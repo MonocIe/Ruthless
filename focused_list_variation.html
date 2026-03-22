@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script type="text/javascript" nonce="1e2a29fad66247c78e59ccac394" src="//local.adguard.org?ts=1774186296987&amp;type=content-script&amp;dmn=contribution.usercontent.google.com&amp;url=https%3A%2F%2Fcontribution.usercontent.google.com%2Fdownload%3Fc%3DCgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sX2ZkNjU5MzMzZjc1NTRkZWViYjcxNWIyNWM2N2M0YjA2EgsSBxDU5-bj4x8YAZIBIwoKcHJvamVjdF9pZBIVQhM2ODA3MzIyNDQyMDM3MDA1MzAz%26filename%3D%26opi%3D89354086&amp;app=com.google.Chrome&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script><script type="text/javascript" nonce="1e2a29fad66247c78e59ccac394" src="//local.adguard.org?ts=1774186296987&amp;name=AdGuard%20Extra&amp;type=user-script"></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#1c1c13",
+              "background-light": "#f7f7f7",
+              "background-dark": "#1b1b17",
+              "matrix-do": "#22c55e",
+              "matrix-schedule": "#3b82f6",
+              "matrix-delegate": "#eab308",
+              "matrix-eliminate": "#ef4444",
+            },
+            fontFamily: {
+              "display": ["Nunito Sans"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<title>Focused List - Eisenhower Matrix</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10 px-4 py-4 flex items-center justify-between">
+<span class="material-symbols-outlined text-primary dark:text-slate-100">menu</span>
+<h1 class="text-xl font-800 tracking-tight text-primary dark:text-slate-100">Focused List</h1>
+<div class="flex items-center gap-2">
+<button class="size-8 rounded-full bg-primary/10 dark:bg-primary/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">search</span>
+</button>
+<div class="size-8 rounded-full bg-primary overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User profile avatar smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtwAANbbtIyOgFvP65qFXlwIdgyqH1mCLpCVPCYkY-ZwU_Qs3YUOMquP1cPGYilW6xlYXRMOyMCeQhfcW5ugw5-Zw9JagReamvoFh3OiSb7n_3BtxF5lcEKFblJc_g1fzZuXqOgRN-w3BzNzp7S9AtwaUjoi0-WQP9Lw410H-MVhwn-bn5KIQ2usDvC7KmEbEpUexpfKvThN2WNVwZJ2GTXxuqKv6DchbbEbgAcIz3H8JdKU2Qyc3cNSE2HkloKEZeMtirhzrOP8k"/>
+</div>
+</div>
+</header>
+<!-- Mini-Matrix Pin -->
+<div class="px-4 pt-4">
+<div class="grid grid-cols-2 gap-2 p-2 bg-white dark:bg-primary/20 rounded-xl shadow-sm border border-primary/5">
+<button class="flex items-center gap-3 p-3 rounded-lg bg-matrix-do/10 border border-matrix-do/20">
+<div class="size-2 rounded-full bg-matrix-do"></div>
+<div class="flex flex-col items-start">
+<span class="text-xs font-bold text-matrix-do uppercase tracking-wider">Do</span>
+<span class="text-lg font-extrabold leading-none">12</span>
+</div>
+</button>
+<button class="flex items-center gap-3 p-3 rounded-lg bg-matrix-schedule/10 border border-matrix-schedule/20">
+<div class="size-2 rounded-full bg-matrix-schedule"></div>
+<div class="flex flex-col items-start">
+<span class="text-xs font-bold text-matrix-schedule uppercase tracking-wider">Schedule</span>
+<span class="text-lg font-extrabold leading-none">8</span>
+</div>
+</button>
+<button class="flex items-center gap-3 p-3 rounded-lg bg-matrix-delegate/10 border border-matrix-delegate/20">
+<div class="size-2 rounded-full bg-matrix-delegate"></div>
+<div class="flex flex-col items-start">
+<span class="text-xs font-bold text-matrix-delegate uppercase tracking-wider">Delegate</span>
+<span class="text-lg font-extrabold leading-none">5</span>
+</div>
+</button>
+<button class="flex items-center gap-3 p-3 rounded-lg bg-matrix-eliminate/10 border border-matrix-eliminate/20">
+<div class="size-2 rounded-full bg-matrix-eliminate"></div>
+<div class="flex flex-col items-start">
+<span class="text-xs font-bold text-matrix-eliminate uppercase tracking-wider">Eliminate</span>
+<span class="text-lg font-extrabold leading-none">3</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Category Tabs -->
+<div class="mt-6">
+<div class="flex border-b border-primary/10 px-4 gap-6 overflow-x-auto no-scrollbar">
+<a class="flex flex-col items-center justify-center border-b-2 border-primary text-primary dark:text-slate-100 pb-3 whitespace-nowrap" href="#">
+<span class="text-sm font-bold tracking-tight">All Tasks</span>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 pb-3 whitespace-nowrap" href="#">
+<span class="text-sm font-bold tracking-tight">Important</span>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 pb-3 whitespace-nowrap" href="#">
+<span class="text-sm font-bold tracking-tight">Urgent</span>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 pb-3 whitespace-nowrap" href="#">
+<span class="text-sm font-bold tracking-tight">Completed</span>
+</a>
+</div>
+</div>
+<!-- Task List -->
+<main class="flex-1 overflow-y-auto px-4 py-6 space-y-4">
+<!-- Do Section -->
+<div class="space-y-3">
+<h3 class="text-xs font-black text-slate-400 uppercase tracking-widest px-1">Important &amp; Urgent</h3>
+<div class="bg-white dark:bg-primary/10 rounded-xl overflow-hidden shadow-sm border-l-4 border-matrix-do flex items-center p-4 gap-4">
+<button class="size-6 rounded-full border-2 border-matrix-do flex items-center justify-center">
+<span class="material-symbols-outlined text-matrix-do text-lg hidden">check</span>
+</button>
+<div class="flex-1">
+<p class="font-bold text-slate-900 dark:text-slate-100">Finish Quarterly Sales Report</p>
+<p class="text-xs text-slate-500">Due in 2 hours • High Priority</p>
+</div>
+<span class="material-symbols-outlined text-slate-300">more_vert</span>
+</div>
+<div class="bg-white dark:bg-primary/10 rounded-xl overflow-hidden shadow-sm border-l-4 border-matrix-do flex items-center p-4 gap-4">
+<button class="size-6 rounded-full border-2 border-matrix-do flex items-center justify-center"></button>
+<div class="flex-1">
+<p class="font-bold text-slate-900 dark:text-slate-100">Client Call: Project Re-scope</p>
+<p class="text-xs text-slate-500">Today at 3:30 PM</p>
+</div>
+<span class="material-symbols-outlined text-slate-300">more_vert</span>
+</div>
+</div>
+<!-- Schedule Section -->
+<div class="space-y-3 pt-2">
+<h3 class="text-xs font-black text-slate-400 uppercase tracking-widest px-1">Important, Not Urgent</h3>
+<div class="bg-white dark:bg-primary/10 rounded-xl overflow-hidden shadow-sm border-l-4 border-matrix-schedule flex items-center p-4 gap-4">
+<button class="size-6 rounded-full border-2 border-matrix-schedule flex items-center justify-center"></button>
+<div class="flex-1">
+<p class="font-bold text-slate-900 dark:text-slate-100">Weekly Team Sync Prep</p>
+<p class="text-xs text-slate-500">Scheduled for Tomorrow</p>
+</div>
+<span class="material-symbols-outlined text-slate-300">calendar_today</span>
+</div>
+<div class="bg-white dark:bg-primary/10 rounded-xl overflow-hidden shadow-sm border-l-4 border-matrix-schedule flex items-center p-4 gap-4">
+<button class="size-6 rounded-full border-2 border-matrix-schedule flex items-center justify-center"></button>
+<div class="flex-1">
+<p class="font-bold text-slate-900 dark:text-slate-100">Learn New UI Design Trends</p>
+<p class="text-xs text-slate-500">Personal Growth • Friday</p>
+</div>
+<span class="material-symbols-outlined text-slate-300">calendar_today</span>
+</div>
+</div>
+<!-- Delegate Section -->
+<div class="space-y-3 pt-2">
+<h3 class="text-xs font-black text-slate-400 uppercase tracking-widest px-1">Urgent, Not Important</h3>
+<div class="bg-white dark:bg-primary/10 rounded-xl overflow-hidden shadow-sm border-l-4 border-matrix-delegate flex items-center p-4 gap-4">
+<button class="size-6 rounded-full border-2 border-matrix-delegate flex items-center justify-center"></button>
+<div class="flex-1">
+<p class="font-bold text-slate-900 dark:text-slate-100">Respond to General Slack Inquiries</p>
+<p class="text-xs text-slate-500">Assign to Junior Assistant</p>
+</div>
+<span class="material-symbols-outlined text-slate-300">person_add</span>
+</div>
+</div>
+<!-- Eliminate Section -->
+<div class="space-y-3 pt-2">
+<h3 class="text-xs font-black text-slate-400 uppercase tracking-widest px-1">Not Important, Not Urgent</h3>
+<div class="bg-white dark:bg-primary/10 rounded-xl overflow-hidden shadow-sm border-l-4 border-matrix-eliminate flex items-center p-4 gap-4 opacity-60">
+<button class="size-6 rounded-full border-2 border-matrix-eliminate flex items-center justify-center"></button>
+<div class="flex-1">
+<p class="font-bold text-slate-900 dark:text-slate-100">Sort Out Old Email Subscriptions</p>
+<p class="text-xs text-slate-500">Low impact</p>
+</div>
+<span class="material-symbols-outlined text-slate-300">delete</span>
+</div>
+</div>
+</main>
+<!-- FAB -->
+<button class="fixed bottom-24 right-6 size-14 rounded-full bg-primary text-white shadow-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="sticky bottom-0 bg-white dark:bg-background-dark border-t border-primary/10 px-4 pb-8 pt-2">
+<div class="flex justify-between items-center max-w-md mx-auto">
+<a class="flex flex-col items-center gap-1 text-primary dark:text-slate-100" href="#">
+<span class="material-symbols-outlined fill-current">format_list_bulleted</span>
+<p class="text-[10px] font-bold uppercase tracking-widest">List</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<p class="text-[10px] font-bold uppercase tracking-widest">Matrix</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+<p class="text-[10px] font-bold uppercase tracking-widest">Stats</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-[10px] font-bold uppercase tracking-widest">Settings</p>
+</a>
+</div>
+</nav>
+</body></html>

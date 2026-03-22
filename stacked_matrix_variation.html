@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stacked Matrix - Task Prioritization</title>
+<script type="text/javascript" nonce="1e2a29fad66247c78e59ccac394" src="//local.adguard.org?ts=1774186296987&amp;type=content-script&amp;dmn=contribution.usercontent.google.com&amp;url=https%3A%2F%2Fcontribution.usercontent.google.com%2Fdownload%3Fc%3DCgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzlmMjg0Nzk3ZTUyMjQ0Y2Y5ZjM3MDM1ZWNjM2UxZTQyEgsSBxDU5-bj4x8YAZIBIwoKcHJvamVjdF9pZBIVQhM2ODA3MzIyNDQyMDM3MDA1MzAz%26filename%3D%26opi%3D89354086&amp;app=com.google.Chrome&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script><script type="text/javascript" nonce="1e2a29fad66247c78e59ccac394" src="//local.adguard.org?ts=1774186296987&amp;name=AdGuard%20Extra&amp;type=user-script"></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1c1c13",
+                        "background-light": "#f7f7f7",
+                        "background-dark": "#1b1b17",
+                        "matrix-do": "#84cc16",    /* Lime Green */
+                        "matrix-schedule": "#3b82f6", /* Bright Blue */
+                        "matrix-delegate": "#eab308", /* Yellow */
+                        "matrix-eliminate": "#ef4444", /* Red */
+                    },
+                    fontFamily: {
+                        "display": ["Nunito Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10 px-4 py-3 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl">menu</span>
+<h1 class="text-xl font-extrabold tracking-tight text-primary">Stacked Matrix</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative">
+<span class="material-symbols-outlined text-primary">notifications</span>
+<span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-matrix-eliminate border-2 border-background-light"></span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary/20 overflow-hidden border border-primary/10">
+<img alt="User Profile" data-alt="Minimalist geometric avatar portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAydC5TLfNvdLUKD1IDCJu3y4msjQIPX6oeX0U_BXNiPCL59sG-h-390-JnGl-NurfU2PzAAuW6EDuxRix4JiVMPldNGZOreJFoEnf7VVjTZJdtdnYXddQwzC2vQfDydRuoUXkNFtM9YfcP14tMp_YJv_ki7cXTGmPfAkJwxr_FqsbvVtjjP26tVFMlSUapTn3MPlZPmm3Fz17e5E3c6p9nlOiXZm_za91auubbZLsJlnl239U00Sw2PzlOIvF6Htu8UMwS1CAEvFc"/>
+</div>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto px-4 pb-24">
+<!-- Strategic Summary Section -->
+<section class="mt-6">
+<h2 class="text-sm font-bold uppercase tracking-widest text-primary/60 mb-3">Strategic Summary</h2>
+<div class="grid grid-cols-3 gap-3">
+<div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-primary/5">
+<p class="text-xs text-primary/60 font-medium">Efficiency</p>
+<p class="text-2xl font-extrabold text-primary">85%</p>
+</div>
+<div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-primary/5">
+<p class="text-xs text-primary/60 font-medium">Active</p>
+<p class="text-2xl font-extrabold text-primary">24</p>
+</div>
+<div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-primary/5">
+<p class="text-xs text-primary/60 font-medium">Urgent</p>
+<p class="text-2xl font-extrabold text-matrix-eliminate">08</p>
+</div>
+</div>
+</section>
+<!-- Stacked Matrix Quadrants -->
+<section class="mt-8 space-y-4">
+<!-- Quadrant 1: DO -->
+<div class="group relative overflow-hidden rounded-xl bg-matrix-do/10 border border-matrix-do/20 p-5 flex flex-col transition-all duration-300">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-matrix-do"></span>
+<h3 class="text-lg font-extrabold text-slate-900">DO</h3>
+</div>
+<span class="material-symbols-outlined text-slate-700">expand_more</span>
+</div>
+<p class="text-slate-700 text-sm mb-4">Urgent &amp; Important tasks that require immediate action.</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border border-white bg-slate-200"></div>
+<div class="w-6 h-6 rounded-full border border-white bg-slate-300"></div>
+</div>
+<span class="bg-matrix-do text-white text-xs font-bold px-3 py-1 rounded-full">4 TASKS</span>
+</div>
+</div>
+<!-- Quadrant 2: SCHEDULE -->
+<div class="group relative overflow-hidden rounded-xl bg-matrix-schedule/10 border border-matrix-schedule/20 p-5 flex flex-col transition-all duration-300">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-matrix-schedule"></span>
+<h3 class="text-lg font-extrabold text-slate-900">SCHEDULE</h3>
+</div>
+<span class="material-symbols-outlined text-slate-700">expand_more</span>
+</div>
+<p class="text-slate-700 text-sm mb-4">Important but not urgent. Plan a specific time to complete these.</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border border-white bg-slate-200"></div>
+<div class="w-6 h-6 rounded-full border border-white bg-slate-300"></div>
+<div class="w-6 h-6 rounded-full border border-white bg-slate-400"></div>
+</div>
+<span class="bg-matrix-schedule text-white text-xs font-bold px-3 py-1 rounded-full">12 TASKS</span>
+</div>
+</div>
+<!-- Quadrant 3: DELEGATE -->
+<div class="group relative overflow-hidden rounded-xl bg-matrix-delegate/10 border border-matrix-delegate/20 p-5 flex flex-col transition-all duration-300">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-matrix-delegate"></span>
+<h3 class="text-lg font-extrabold text-slate-900">DELEGATE</h3>
+</div>
+<span class="material-symbols-outlined text-slate-700">expand_more</span>
+</div>
+<p class="text-slate-700 text-sm mb-4">Urgent but not important. Assign these to someone else.</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border border-white bg-slate-200"></div>
+</div>
+<span class="bg-matrix-delegate text-white text-xs font-bold px-3 py-1 rounded-full">2 TASKS</span>
+</div>
+</div>
+<!-- Quadrant 4: ELIMINATE -->
+<div class="group relative overflow-hidden rounded-xl bg-matrix-eliminate/10 border border-matrix-eliminate/20 p-5 flex flex-col transition-all duration-300">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-matrix-eliminate"></span>
+<h3 class="text-lg font-extrabold text-slate-900">ELIMINATE</h3>
+</div>
+<span class="material-symbols-outlined text-slate-700">expand_more</span>
+</div>
+<p class="text-slate-700 text-sm mb-4">Neither urgent nor important. Focus on removing these distractions.</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border border-white bg-slate-200"></div>
+<div class="w-6 h-6 rounded-full border border-white bg-slate-300"></div>
+</div>
+<span class="bg-matrix-eliminate text-white text-xs font-bold px-3 py-1 rounded-full">6 TASKS</span>
+</div>
+</div>
+</section>
+<!-- Quick View Card (Inspired by Summary) -->
+<div class="mt-8">
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-lg bg-white dark:bg-slate-800 overflow-hidden">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover" data-alt="Abstract colorful productivity planning illustration" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC0LgbJQCV3rd46aTNfNfZ4Cvp0mfG-ASNvl4umzOJvIxRskjPcUfaOE8eefWlaCJsEjJSU_tm-kFIklTBU5B3hAhcA-zavzvymw4nj4c9vE8_neaDk1_SJEuGzteptETRAWTFyRz2iGPJPuZrhCamFC5nk-96TdSYw1-F3IvUD_mtpFiaDHZ_nbiTE8-87ZGr8XmakJKpoyholBFdJihQ042-ODNWXR2WA8Z_WCUvBIKp-pHRvaVF7EywggUq5o1Uu3_0_VGgmfPo");'></div>
+<div class="flex w-full grow flex-col items-stretch justify-center gap-1 p-5">
+<div class="flex items-center justify-between mb-1">
+<p class="text-matrix-do text-xs font-bold uppercase tracking-wider">Top Priority</p>
+<span class="text-xs text-primary/40">Updated 2m ago</span>
+</div>
+<p class="text-primary text-xl font-extrabold leading-tight">Quarterly Strategy Review</p>
+<div class="flex items-center gap-3 mt-4">
+<div class="flex flex-col flex-1">
+<p class="text-primary/60 text-sm">Status: In Progress</p>
+<div class="w-full bg-primary/10 h-1.5 rounded-full mt-1 overflow-hidden">
+<div class="bg-matrix-do h-full w-[65%] rounded-full"></div>
+</div>
+</div>
+<button class="bg-primary text-white p-3 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-white/90 dark:bg-background-dark/90 backdrop-blur-xl border-t border-primary/10 flex items-center justify-around px-4 py-2 pb-6">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined font-variation-fill text-[24px]">grid_view</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Matrix</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary/40" href="#">
+<span class="material-symbols-outlined text-[24px]">checklist</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Tasks</span>
+</a>
+<div class="relative -top-6">
+<button class="bg-primary text-white h-14 w-14 rounded-full flex items-center justify-center shadow-xl border-4 border-background-light">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 text-primary/40" href="#">
+<span class="material-symbols-outlined text-[24px]">insights</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Stats</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary/40" href="#">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Settings</span>
+</a>
+</nav>
+</body></html>

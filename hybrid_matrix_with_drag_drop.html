@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script type="text/javascript" nonce="1e2a29fad66247c78e59ccac394" src="//local.adguard.org?ts=1774186296987&amp;type=content-script&amp;dmn=contribution.usercontent.google.com&amp;url=https%3A%2F%2Fcontribution.usercontent.google.com%2Fdownload%3Fc%3DCgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzJiOWE4MTQ5YWUwYTQ5MDc5ZGZkMzMxZmNlZWJkNDQ5EgsSBxDU5-bj4x8YAZIBIwoKcHJvamVjdF9pZBIVQhM2ODA3MzIyNDQyMDM3MDA1MzAz%26filename%3D%26opi%3D89354086&amp;app=com.google.Chrome&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script><script type="text/javascript" nonce="1e2a29fad66247c78e59ccac394" src="//local.adguard.org?ts=1774186296987&amp;name=AdGuard%20Extra&amp;type=user-script"></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1c1c13",
+                        "background-light": "#f7f7f7",
+                        "background-dark": "#1b1b17",
+                        "q-do": "#22c55e",
+                        "q-schedule": "#3b82f6",
+                        "q-delegate": "#f97316",
+                        "q-eliminate": "#ef4444",
+                    },
+                    fontFamily: {
+                        "display": ["Nunito Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+            safelist: [
+                'border-q-do', 'border-q-schedule', 'border-q-delegate', 'border-q-eliminate',
+                'text-q-do', 'text-q-schedule', 'text-q-delegate', 'text-q-eliminate'
+            ]
+        }
+    </script>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+        .sortable-ghost {
+            opacity: 0.4;
+            background: #e2e8f0 !important;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10 px-4 py-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-primary rounded-lg text-white">
+<span class="material-symbols-outlined block">bolt</span>
+</div>
+<div>
+<h1 class="text-xl font-800 tracking-tight leading-none">Ruthless</h1>
+<p class="text-[10px] uppercase tracking-widest text-primary/60 font-bold">Unfair Advantage</p>
+</div>
+</div>
+<button class="size-10 flex items-center justify-center rounded-full bg-primary/5 hover:bg-primary/10">
+<span class="material-symbols-outlined">analytics</span>
+</button>
+</header>
+<main class="flex-1 overflow-y-auto pb-24">
+<!-- Matrix Summary 2x2 Grid -->
+<div class="px-4 py-6">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-sm font-bold uppercase tracking-wider text-slate-500">Eisenhower Summary</h2>
+<span class="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full" id="total-tasks-count">14 Active Tasks</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<!-- Quadrant: Do -->
+<div class="bg-white dark:bg-slate-800/50 p-4 rounded-xl border-l-4 border-q-do shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-q-do">verified</span>
+<span class="text-xs font-bold text-slate-400">04</span>
+</div>
+<h3 class="text-sm font-bold">Do Now</h3>
+<p class="text-[10px] text-slate-500">Urgent &amp; Important</p>
+</div>
+<!-- Quadrant: Schedule -->
+<div class="bg-white dark:bg-slate-800/50 p-4 rounded-xl border-l-4 border-q-schedule shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-q-schedule">calendar_month</span>
+<span class="text-xs font-bold text-slate-400">03</span>
+</div>
+<h3 class="text-sm font-bold">Schedule</h3>
+<p class="text-[10px] text-slate-500">Long-term Growth</p>
+</div>
+<!-- Quadrant: Delegate -->
+<div class="bg-white dark:bg-slate-800/50 p-4 rounded-xl border-l-4 border-q-delegate shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-q-delegate">groups</span>
+<span class="text-xs font-bold text-slate-400">05</span>
+</div>
+<h3 class="text-sm font-bold">Delegate</h3>
+<p class="text-[10px] text-slate-500">Low Leverage</p>
+</div>
+<!-- Quadrant: Eliminate -->
+<div class="bg-white dark:bg-slate-800/50 p-4 rounded-xl border-l-4 border-q-eliminate shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-q-eliminate">delete_sweep</span>
+<span class="text-xs font-bold text-slate-400">02</span>
+</div>
+<h3 class="text-sm font-bold">Eliminate</h3>
+<p class="text-[10px] text-slate-500">Distractions</p>
+</div>
+</div>
+</div>
+<!-- Task List Groups -->
+<div class="px-4 space-y-8">
+<!-- Group: Do Now -->
+<section id="section-do-now">
+<div class="flex items-center gap-2 mb-3">
+<div class="size-2 rounded-full bg-q-do"></div>
+<h2 class="text-sm font-bold uppercase tracking-widest">Focus: Do Now</h2>
+</div>
+<div class="task-container space-y-3 min-h-[50px]">
+<div class="task-card bg-white dark:bg-slate-800/40 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700/50 flex items-center justify-between group">
+<div class="flex items-start gap-3">
+<div class="checkbox-wrapper mt-1 size-5 rounded border-2 border-q-do flex items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined text-[14px] text-q-do opacity-0 group-hover:opacity-100">check</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-800 dark:text-slate-200">Finalize Q4 Strategy Deck</h4>
+<p class="text-xs text-slate-500">High impact on investment round</p>
+</div>
+</div>
+<div class="flex items-center gap-2 text-slate-300">
+<span class="text-[10px] font-bold uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-opacity">Move</span>
+<span class="material-symbols-outlined cursor-grab active:cursor-grabbing">drag_indicator</span>
+</div>
+</div>
+<div class="task-card bg-white dark:bg-slate-800/40 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700/50 flex items-center justify-between group">
+<div class="flex items-start gap-3">
+<div class="checkbox-wrapper mt-1 size-5 rounded border-2 border-q-do flex items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined text-[14px] text-q-do opacity-0 group-hover:opacity-100">check</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-800 dark:text-slate-200">Call with Lead Engineer</h4>
+<p class="text-xs text-slate-500">Blocker on feature deployment</p>
+</div>
+</div>
+<div class="flex items-center gap-2 text-slate-300">
+<span class="text-[10px] font-bold uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-opacity">Move</span>
+<span class="material-symbols-outlined cursor-grab active:cursor-grabbing">drag_indicator</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Group: Schedule -->
+<section id="section-schedule">
+<div class="flex items-center gap-2 mb-3">
+<div class="size-2 rounded-full bg-q-schedule"></div>
+<h2 class="text-sm font-bold uppercase tracking-widest text-slate-500">Strategic: Schedule</h2>
+</div>
+<div class="task-container space-y-3 min-h-[50px]">
+<div class="task-card bg-white/50 dark:bg-slate-800/20 p-4 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 flex items-center justify-between">
+<div class="flex items-start gap-3">
+<div class="checkbox-wrapper mt-1 size-5 rounded border-2 border-q-schedule flex items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined text-[14px] text-q-schedule opacity-100">event_note</span>
+</div>
+<div>
+<h4 class="font-semibold text-slate-700 dark:text-slate-300">Quarterly Vision Review</h4>
+<p class="text-xs text-slate-400">Scheduled for Thursday, 10:00 AM</p>
+</div>
+</div>
+<div class="flex items-center gap-2 text-slate-300 group">
+<span class="text-[10px] font-bold uppercase tracking-tighter">Move</span>
+<span class="material-symbols-outlined cursor-grab active:cursor-grabbing">drag_indicator</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Group: Delegate -->
+<section id="section-delegate">
+<div class="flex items-center gap-2 mb-3">
+<div class="size-2 rounded-full bg-q-delegate"></div>
+<h2 class="text-sm font-bold uppercase tracking-widest text-slate-500">Operational: Delegate</h2>
+</div>
+<div class="task-container space-y-3 min-h-[50px]">
+<div class="task-card bg-white/50 dark:bg-slate-800/20 p-4 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center justify-between">
+<div class="flex items-start gap-3">
+<div class="checkbox-wrapper mt-1 size-5 rounded border-2 border-q-delegate flex items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined text-[14px] text-q-delegate opacity-100">groups</span>
+</div>
+<div>
+<h4 class="font-semibold text-slate-700 dark:text-slate-300">Expense Report Processing</h4>
+<p class="text-xs text-slate-400">Assigned to Sarah M.</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-300">chat_bubble</span>
+<div class="flex items-center gap-2 text-slate-300 group">
+<span class="text-[10px] font-bold uppercase tracking-tighter">Move</span>
+<span class="material-symbols-outlined cursor-grab active:cursor-grabbing">drag_indicator</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Group: Eliminate -->
+<section id="section-eliminate">
+<div class="flex items-center gap-2 mb-3">
+<div class="size-2 rounded-full bg-q-eliminate"></div>
+<h2 class="text-sm font-bold uppercase tracking-widest text-slate-500">Waste: Eliminate</h2>
+</div>
+<div class="task-container space-y-3 min-h-[50px]"></div>
+</section>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 px-6 pb-6 pt-3 flex items-center justify-between">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-[1]">target</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Focus</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Matrix</span>
+</a>
+<!-- Central Add Button -->
+<div class="relative -top-8">
+<button class="size-14 rounded-full bg-primary text-white shadow-xl shadow-primary/20 flex items-center justify-center ring-4 ring-background-light dark:ring-background-dark" id="quick-add-trigger">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">trending_up</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Growth</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">System</span>
+</a>
+</nav>
+<div class="hidden fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm flex items-end justify-center pb-24 px-4" id="quick-add-modal">
+<div class="bg-white dark:bg-slate-800 w-full max-w-md rounded-2xl p-4 shadow-2xl">
+<textarea class="w-full bg-transparent border-0 focus:ring-0 text-lg placeholder-slate-400 dark:text-white resize-none" id="task-input" placeholder="Brain dump your tasks..." rows="3"></textarea>
+<div class="flex justify-end mt-2">
+<button class="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold text-sm" id="submit-task-btn">Route Task</button>
+</div>
+</div>
+</div>
+<script>
+    const modal = document.getElementById('quick-add-modal');
+    const trigger = document.getElementById('quick-add-trigger');
+    const input = document.getElementById('task-input');
+    const submitBtn = document.getElementById('submit-task-btn');
+
+    const toggleModal = (show) => {
+        if (show) {
+            modal.classList.remove('hidden');
+            input.focus();
+        } else {
+            modal.classList.add('hidden');
+            input.value = '';
+        }
+    };
+
+    trigger.addEventListener('click', () => toggleModal(true));
+    
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) toggleModal(false);
+    });
+
+    const styleMap = {
+        'section-do-now': { color: 'q-do', icon: 'check' },
+        'section-schedule': { color: 'q-schedule', icon: 'event_note' },
+        'section-delegate': { color: 'q-delegate', icon: 'groups' },
+        'section-eliminate': { color: 'q-eliminate', icon: 'delete_sweep' }
+    };
+
+    const updateCardStyling = (card, sectionId) => {
+        const style = styleMap[sectionId];
+        if (!style) return;
+
+        const checkboxWrapper = card.querySelector('.checkbox-wrapper');
+        const iconElement = card.querySelector('.material-symbols-outlined');
+
+        if (checkboxWrapper) {
+            // Remove existing border colors
+            checkboxWrapper.classList.remove('border-q-do', 'border-q-schedule', 'border-q-delegate', 'border-q-eliminate');
+            checkboxWrapper.classList.add(`border-${style.color}`);
+        }
+
+        if (iconElement) {
+            // Update icon text and color
+            iconElement.textContent = style.icon;
+            iconElement.classList.remove('text-q-do', 'text-q-schedule', 'text-q-delegate', 'text-q-eliminate');
+            iconElement.classList.add(`text-${style.color}`);
+            
+            // For sections other than Do Now, ensure icon is visible
+            if (sectionId !== 'section-do-now') {
+                iconElement.classList.remove('opacity-0');
+                iconElement.classList.add('opacity-100');
+            } else {
+                iconElement.classList.add('opacity-0');
+            }
+        }
+    };
+
+    const renderNewTask = (text, category = 'Do Now') => {
+        let sectionId = 'section-do-now';
+        if (category === 'Schedule') sectionId = 'section-schedule';
+        else if (category === 'Delegate') sectionId = 'section-delegate';
+        else if (category === 'Eliminate') sectionId = 'section-eliminate';
+
+        const style = styleMap[sectionId];
+        const section = document.getElementById(sectionId);
+        const container = section.querySelector('.task-container');
+
+        const taskHtml = `
+            <div class="task-card bg-white dark:bg-slate-800/40 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700/50 flex items-center justify-between group animate-in slide-in-from-bottom-2 duration-300">
+                <div class="flex items-start gap-3">
+                    <div class="checkbox-wrapper mt-1 size-5 rounded border-2 border-${style.color} flex items-center justify-center cursor-pointer">
+                        <span class="material-symbols-outlined text-[14px] text-${style.color} ${sectionId === 'section-do-now' ? 'opacity-0' : 'opacity-100'} group-hover:opacity-100">${style.icon}</span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-200">${text}</h4>
+                        <p class="text-xs text-slate-500">Quickly captured</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 text-slate-300">
+                    <span class="text-[10px] font-bold uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-opacity">Move</span>
+                    <span class="material-symbols-outlined cursor-grab active:cursor-grabbing">drag_indicator</span>
+                </div>
+            </div>
+        `;
+
+        container.insertAdjacentHTML('afterbegin', taskHtml);
+    };
+
+    // SortableJS Initialization
+    document.querySelectorAll('.task-container').forEach(container => {
+        new Sortable(container, {
+            group: 'eisenhower-matrix',
+            handle: '.cursor-grab',
+            ghostClass: 'sortable-ghost',
+            animation: 150,
+            onEnd: (evt) => {
+                const card = evt.item;
+                const newSection = card.closest('section');
+                if (newSection) {
+                    updateCardStyling(card, newSection.id);
+                }
+            }
+        });
+    });
+
+    submitBtn.addEventListener('click', () => {
+        const value = input.value.trim();
+        if (value) {
+            renderNewTask(value, 'Do Now');
+            toggleModal(false);
+        }
+    });
+
+    input.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+            submitBtn.click();
+        }
+        if (e.key === 'Escape') {
+            toggleModal(false);
+        }
+    });
+</script>
+</body></html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script type="text/javascript" nonce="1e2a29fad66247c78e59ccac394" src="//local.adguard.org?ts=1774186296987&amp;type=content-script&amp;dmn=contribution.usercontent.google.com&amp;url=https%3A%2F%2Fcontribution.usercontent.google.com%2Fdownload%3Fc%3DCgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzhiZWQwZTA3YzdmMDRhYTFhYjNmNTc1MmIzMGM0ZTU0EgsSBxDU5-bj4x8YAZIBIwoKcHJvamVjdF9pZBIVQhM2ODA3MzIyNDQyMDM3MDA1MzAz%26filename%3D%26opi%3D89354086&amp;app=com.google.Chrome&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script><script type="text/javascript" nonce="1e2a29fad66247c78e59ccac394" src="//local.adguard.org?ts=1774186296987&amp;name=AdGuard%20Extra&amp;type=user-script"></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1c1c13",
+                        "background-light": "#f7f7f7",
+                        "background-dark": "#1b1b17",
+                    },
+                    fontFamily: {
+                        "display": ["Nunito Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Ruthless Prioritization Board</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header -->
+<header class="flex items-center bg-white dark:bg-background-dark border-b border-slate-200 dark:border-slate-800 p-4 sticky top-0 z-10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-slate-100">menu</span>
+<h1 class="text-lg font-bold tracking-tight">Ruthless Prioritization</h1>
+</div>
+<div class="flex-1"></div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined p-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full">search</button>
+<button class="material-symbols-outlined p-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full">account_circle</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 p-4 lg:p-6 max-w-7xl mx-auto w-full">
+<div class="flex flex-col lg:flex-row gap-6">
+<!-- Eisenhower Matrix (Left/Top) -->
+<div class="flex-1">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-2xl font-extrabold tracking-tight">Eisenhower Matrix</h2>
+<span class="text-sm font-semibold bg-primary/10 text-primary px-3 py-1 rounded-full">28 Total Tasks</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Quadrant 1: Do Now -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex flex-col h-64 shadow-sm">
+<div class="flex items-center justify-between mb-3">
+<h3 class="font-bold text-red-600 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">bolt</span> Do Now
+                            </h3>
+<span class="text-xs font-bold text-slate-400">5 items</span>
+</div>
+<div class="space-y-2 overflow-y-auto pr-1">
+<div class="bg-slate-50 dark:bg-slate-800 p-2 rounded border-l-4 border-red-500 text-sm">Fix production bug #104</div>
+<div class="bg-slate-50 dark:bg-slate-800 p-2 rounded border-l-4 border-red-500 text-sm">Client presentation prep</div>
+<div class="bg-slate-50 dark:bg-slate-800 p-2 rounded border-l-4 border-red-500 text-sm opacity-60">Daily standup notes</div>
+</div>
+<button class="mt-auto pt-3 text-xs font-bold text-primary flex items-center justify-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-xs">add</span> ADD TASK
+                        </button>
+</div>
+<!-- Quadrant 2: Schedule -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex flex-col h-64 shadow-sm">
+<div class="flex items-center justify-between mb-3">
+<h3 class="font-bold text-blue-600 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">calendar_month</span> Schedule
+                            </h3>
+<span class="text-xs font-bold text-slate-400">8 items</span>
+</div>
+<div class="space-y-2 overflow-y-auto pr-1">
+<div class="bg-slate-50 dark:bg-slate-800 p-2 rounded border-l-4 border-blue-500 text-sm">Monthly review report</div>
+<div class="bg-slate-50 dark:bg-slate-800 p-2 rounded border-l-4 border-blue-500 text-sm">Update team roadmap</div>
+<div class="bg-slate-50 dark:bg-slate-800 p-2 rounded border-l-4 border-blue-500 text-sm">Product strategy doc</div>
+</div>
+<button class="mt-auto pt-3 text-xs font-bold text-primary flex items-center justify-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-xs">add</span> ADD TASK
+                        </button>
+</div>
+<!-- Quadrant 3: Delegate -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex flex-col h-64 shadow-sm">
+<div class="flex items-center justify-between mb-3">
+<h3 class="font-bold text-orange-600 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">group</span> Delegate
+                            </h3>
+<span class="text-xs font-bold text-slate-400">3 items</span>
+</div>
+<div class="space-y-2 overflow-y-auto pr-1">
+<div class="bg-slate-50 dark:bg-slate-800 p-2 rounded border-l-4 border-orange-500 text-sm">Social media posting</div>
+<div class="bg-slate-50 dark:bg-slate-800 p-2 rounded border-l-4 border-orange-500 text-sm">Expense report filing</div>
+</div>
+<button class="mt-auto pt-3 text-xs font-bold text-primary flex items-center justify-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-xs">add</span> ADD TASK
+                        </button>
+</div>
+<!-- Quadrant 4: Delete -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex flex-col h-64 shadow-sm">
+<div class="flex items-center justify-between mb-3">
+<h3 class="font-bold text-slate-500 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">delete</span> Delete
+                            </h3>
+<span class="text-xs font-bold text-slate-400">12 items</span>
+</div>
+<div class="space-y-2 overflow-y-auto pr-1">
+<div class="bg-slate-50 dark:bg-slate-800 p-2 rounded border-l-4 border-slate-400 text-sm line-through text-slate-400">Archive old emails</div>
+<div class="bg-slate-50 dark:bg-slate-800 p-2 rounded border-l-4 border-slate-400 text-sm line-through text-slate-400">Newsletter cleanup</div>
+</div>
+<button class="mt-auto pt-3 text-xs font-bold text-primary flex items-center justify-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-xs">cleaning_services</span> PURGE
+                        </button>
+</div>
+</div>
+</div>
+<!-- Inbound Tasks (Right/Bottom) -->
+<div class="w-full lg:w-80 shrink-0">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-xl font-bold">Inbound Tasks</h2>
+<button class="bg-primary text-white size-8 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-2 space-y-2 shadow-sm min-h-[400px]">
+<!-- Task Item -->
+<div class="p-3 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-lg hover:shadow-md transition-shadow group cursor-grab">
+<div class="flex gap-3">
+<div class="flex-1">
+<p class="text-sm font-semibold mb-1">Buy office supplies</p>
+<div class="flex gap-2">
+<span class="text-[10px] px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 rounded text-slate-500">Unsorted</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">drag_indicator</span>
+</div>
+</div>
+<!-- Task Item -->
+<div class="p-3 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-lg hover:shadow-md transition-shadow group cursor-grab">
+<div class="flex gap-3">
+<div class="flex-1">
+<p class="text-sm font-semibold mb-1">Update website footer</p>
+<div class="flex gap-2">
+<span class="text-[10px] px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 rounded text-slate-500">Design</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">drag_indicator</span>
+</div>
+</div>
+<!-- Task Item -->
+<div class="p-3 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-lg hover:shadow-md transition-shadow group cursor-grab">
+<div class="flex gap-3">
+<div class="flex-1">
+<p class="text-sm font-semibold mb-1">Research AI tools</p>
+<div class="flex gap-2">
+<span class="text-[10px] px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 rounded text-slate-500">Research</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">drag_indicator</span>
+</div>
+</div>
+<!-- Task Item -->
+<div class="p-3 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-lg hover:shadow-md transition-shadow group cursor-grab">
+<div class="flex gap-3">
+<div class="flex-1">
+<p class="text-sm font-semibold mb-1">Check flight prices</p>
+<div class="flex gap-2">
+<span class="text-[10px] px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 rounded text-slate-500">Personal</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">drag_indicator</span>
+</div>
+</div>
+<!-- Placeholder/Empty State hint -->
+<div class="border-2 border-dashed border-slate-100 dark:border-slate-800 rounded-lg p-6 flex flex-col items-center justify-center text-slate-400">
+<span class="material-symbols-outlined mb-2">move_to_inbox</span>
+<p class="text-xs font-medium text-center">Drag items here to park them</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark pb-6 pt-2 px-4 sticky bottom-0">
+<div class="max-w-md mx-auto flex justify-around">
+<a class="flex flex-col items-center gap-1 text-primary dark:text-slate-100" href="#">
+<span class="material-symbols-outlined fill-1">grid_view</span>
+<p class="text-[10px] font-bold">Matrix</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">checklist</span>
+<p class="text-[10px] font-medium">List</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<p class="text-[10px] font-medium">Insights</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-[10px] font-medium">Settings</p>
+</a>
+</div>
+</nav>
+<!-- Background Decoration -->
+<div class="fixed inset-0 -z-10 pointer-events-none opacity-20 dark:opacity-5 overflow-hidden">
+<div class="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary rounded-full blur-[100px]"></div>
+<div class="absolute bottom-[-5%] left-[-5%] w-[30%] h-[30%] bg-primary rounded-full blur-[80px]"></div>
+</div>
+</body></html>
